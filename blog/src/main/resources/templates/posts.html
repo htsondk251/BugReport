@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+  <div class="container">
+    <menu th:replace="layout :: menu(title=${user} ? ${user.fullname} + '\'s micro blog': 'Home page')"></menu>
+
+    <table th:if="${posts != null || posts.size() > 0}">
+      <th>
+        <td><strong>Date-Time</strong></td>
+        <td><strong>Title</strong></td>
+        <td><strong>Status</strong></td>
+      </th>
+      <tr th:each="post: ${posts}">
+        <td th:text="${#temporals.format(post.lastUpdate, 'dd-MM-yyyy HH:mm')}">Time</td>
+        <td><a th:href="@{/post/{id}(id=${post.id})}"><strong th:text="${post.title}"></strong></a></td>
+        <td th:text="${post.status}">Status</td>
+      </tr>
+    </table>
+
+
+  </div>
+</body>
+
+</html>
