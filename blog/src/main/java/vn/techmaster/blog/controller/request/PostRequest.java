@@ -31,7 +31,7 @@ public class PostRequest {
   private Long user_id;
   private RatingPoint rating; // = RatingPoint.ONE;
 
-  private StatusType status= StatusType.NOT_FIXED;
+  private StatusType status = StatusType.NOT_FIXED;
 
   // public PostRequest(@NotNull @Size(min = 10, max = 300, message = "title must be with 10 and 300") String title,
   //     @NotNull @Size(min = 20, max = 5000, message = "content must be with 20 and 5000") String content) {

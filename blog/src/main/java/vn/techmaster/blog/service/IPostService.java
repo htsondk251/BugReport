@@ -22,4 +22,10 @@ public interface IPostService {
   // public List<Post> getAllPostsByTagID(long tag_id) throws PostException;
   public List<Post> getAllNotFixedPosts();
   public List<Tag> getAllTags();
+
+  public List<Post> searchPostsByTitle(String title);
+  
+  public List<Post> searchPost(String terms, int limit, int offset);
+  public void reindexFullText();
+
 }

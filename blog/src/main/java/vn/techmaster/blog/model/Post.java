@@ -24,6 +24,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,18 +38,21 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Indexed
 public class Post { 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length=255)
+    @FullTextField
     private String title;
     @Column(length=3000)
+    @FullTextField
     private String content;
     private LocalDateTime lastUpdate;
     @Enumerated(EnumType.STRING)
-    private StatusType status = StatusType.NOT_FIXED;
+    private StatusType status; // = StatusType.NOT_FIXED;
     @Enumerated(EnumType.STRING)
-    private RatingPoint rating = RatingPoint.ONE;
+    private RatingPoint rating; // = RatingPoint.ONE;
 
     @PrePersist //Trước khi lưu khi khởi tạo record
     public void prePersist() {

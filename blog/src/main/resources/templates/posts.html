@@ -5,7 +5,7 @@
 
 <body>
   <div class="container">
-    <menu th:replace="layout :: menu(title=${user} ? ${user.fullname} + '\'s micro blog': 'Home page')"></menu>
+    <menu th:replace="layout :: menu(title=${user} ? ${user.fullname} + '\'s page': 'Home page')"></menu>
 
     <table th:if="${posts != null || posts.size() > 0}">
       <th>

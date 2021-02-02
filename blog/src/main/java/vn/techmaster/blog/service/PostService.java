@@ -4,6 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.hibernate.CacheMode;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.massindexing.MassIndexer;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +36,9 @@ public class PostService implements IPostService {
   @Autowired
   TagRepository tagRepo;
 
+  @PersistenceContext
+  private EntityManager em;
+
   @Override
   public List<Post> findAll() {
     return postRepo.findAll();  //Bổ xung pagination vào đây !
@@ -44,7 +54,7 @@ public class PostService implements IPostService {
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
       Post post = PostMapper.INSTANCE.postRequestToPost(postRequest);
-      postRepo.save(post);
+      // postRepo.save(post);
       user.addPost(post);
       userRepo.flush();
     } else {
@@ -125,4 +135,28 @@ public class PostService implements IPostService {
   // }
 
   
+  @Override
+  public List<Post> searchPost(String terms, int limit, int offset) {
+    return Search.session(em).search(Post.class).where(f -> f.match().fields("title", "content").matching(terms))
+        .fetchHits(offset, limit);
+  }
+  
+  @Override
+  public void reindexFullText() {
+    SearchSession searchSession = Search.session(em);
+
+    MassIndexer indexer = searchSession.massIndexer(Post.class).dropAndCreateSchemaOnStart(true)
+    .typesToIndexInParallel( 2 )
+    .batchSizeToLoadObjects(10)
+    .idFetchSize(200)
+    .threadsToLoadObjects(5)
+    .cacheMode(CacheMode.IGNORE);
+    indexer.start();    
+  }
+
+  @Override
+  public List<Post> searchPostsByTitle(String title) {
+    List<Post> posts = postRepo.getAllPostsByTitle(title);
+    return posts;
+  }
 }

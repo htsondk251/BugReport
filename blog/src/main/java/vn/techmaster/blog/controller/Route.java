@@ -9,5 +9,7 @@ public class Route {
   public static final String POST = "post.html";
   public static final String POST1 = "post1.html";
   public static final String POST_COMMENT = "post_comment.html";
-  // public static final String POST_COMMENT1 = "post_comment1.html";
+  public static final String SEARCH = "search";
+  public static final String SEARCH_RESULT = "searchresult";
+  
 }

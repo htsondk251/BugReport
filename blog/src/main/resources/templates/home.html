@@ -12,7 +12,15 @@
         <div class="card-body">
           <h5 class="card-title" th:text="${post.title}"></h5>
           <h6 class="card-subtitle mb-2 text-muted" th:text="${post.getUser().getFullname()}">Card subtitle</h6>
-          <h6 th:text=${post.comments.size()}></h6>
+          <div th:style="inline">
+            <label for="rating" class="form-label">Status</label>
+            <h6 th:text=${post.status}></h6>
+          </div>
+          <div th:style="inline">
+            <label for="rating" class="form-label">Rating</label>
+            <h6 th:text=${post.rating.displayValue}></h6>
+          </div>
+
           <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
           <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
         </div>        
