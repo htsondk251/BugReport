@@ -1,6 +1,6 @@
 # User's Guide
-access at [http://localhost:8080](http://localhost:8080)
-login using 1 out of 6 available accounts in [user.sql](src/main/resources/user.sql)
+access at [http://localhost:8080](http://localhost:8080)  
+login using 1 out of 6 available accounts in [user.sql](bloc/src/main/resources/user.sql)
 # Hackathon giữa kỳ
 
 ## Thời gian - Địa điểm
@@ -8,7 +8,6 @@ login using 1 out of 6 available accounts in [user.sql](src/main/resources/user.
 - Địa điểm: phòng số 1, 2, 4, 5, cơ sở 48 Tố Hữu, Techmaster
 
 ## Chủ đề Hackathon: xây dựng hệ thống khiếu nại báo cáo lỗi.
-
 #### Roles - các vai trò người dùng trong hệ thống:
 1. Anonymous user: chưa đăng nhập không được xem hay làm bất kỳ hành động gì
 2. Customer: được phép tạo bài viết gồm title tối đa 255 ký tự, mô tả 3000 ký tự, upload tối đa 3 ảnh chụp lại lỗi để phản ánh, khiếu nại. Khách hàng cũng có trả lời, reply bài viết của mình.
