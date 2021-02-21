@@ -1,6 +1,6 @@
 # User's Guide
 access at [http://localhost:8080](http://localhost:8080)  
-login using 1 out of 6 available accounts in [user.sql](bloc/src/main/resources/user.sql)
+login using 1 out of 6 available accounts in [user.sql](blog/src/main/resources/user.sql)
 # Hackathon giữa kỳ
 
 ## Thời gian - Địa điểm
