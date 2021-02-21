@@ -2,17 +2,28 @@
 <html lang="en">
 
 <head th:replace="layout :: head"></head>
-
+<style>
+  table, th, td {
+    border: 1px solid black;
+    /* border-collapse: collapse; */
+  }
+</style>
 <body>
   <div class="container">
     <menu th:replace="layout :: menu(title=${user} ? ${user.fullname} + '\'s page': 'Home page')"></menu>
-
-    <table th:if="${posts != null || posts.size() > 0}">
-      <th>
-        <td><strong>Date-Time</strong></td>
-        <td><strong>Title</strong></td>
-        <td><strong>Status</strong></td>
-      </th>
+    <form class="input-group" action="#" method="post" th:action="@{/search}" th:object="${searchRequest}">
+      <input type="text" th:field="*{term}" class="form-control mb-3" id="term" placeholder="term to search">
+      <!-- <button style="display: inline;" type="submit" class="btn btn-primary">Search</button> -->
+      <span class="input-group-btn">
+        <button class="btn btn-primary">Search</button>
+    </span>
+    </form>
+    <table th:if="${posts != null && posts.size() > 0}" >
+      <tr>
+        <th><strong>Date-Time</strong></th>
+        <th><strong>Title</strong></th>
+        <th><strong>Status</strong></th>
+      </tr>
       <tr th:each="post: ${posts}">
         <td th:text="${#temporals.format(post.lastUpdate, 'dd-MM-yyyy HH:mm')}">Time</td>
         <td><a th:href="@{/post/{id}(id=${post.id})}"><strong th:text="${post.title}"></strong></a></td>

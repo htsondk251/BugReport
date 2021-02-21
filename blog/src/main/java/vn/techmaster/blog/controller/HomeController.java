@@ -34,6 +34,10 @@ public class HomeController {
     if (user != null) {  //Người dùng đã login      
       model.addAttribute("user", user);
     }
+    // else {
+    //   user = new User();
+    //   user.setRole(RoleType.ANONYMOUS);
+    // }
     List<Post> allPosts = postService.findAll();
     model.addAttribute("posts", allPosts);    
     return Route.HOME;

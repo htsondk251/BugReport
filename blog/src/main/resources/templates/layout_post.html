@@ -9,10 +9,10 @@
 </head>
 <body>
   <div th:fragment="menu" class="mb-3">
-    <h1 th:text="${post} ? ${post.userFullName} + '\'s micro blog': 'Home page'">Home Page</h1>
+    <h1 th:text="${post} ? ${post.userFullName} + '\'s page': 'Home page'">Home Page</h1>
     <a href="/" class="me-4">Home</a>
     <a href="/login" class="me-4" th:style="${user==null ? 'display:inline' : 'display:none'}">Login</a>
-    <a href="/post" class="me-4" th:style="${user==null ? 'display:none' : 'display:inline'}">Write a post</a>
+    <a href="/post" class="me-4" th:style="${user==null || user.role!=T(vn.techmaster.blog.model.RoleType).CUSTOMER? 'display:none' : 'display:inline'}">New Bug</a>
     <a href="/logout" class="me-4" th:style="${user==null ? 'display:none' : 'display:inline'}"  th:text="${user!=null ? 'Log out as ' + user.fullname : ''}">Logout</a><br>
   </div> 
 </body>

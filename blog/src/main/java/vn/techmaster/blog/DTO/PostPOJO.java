@@ -1,10 +1,6 @@
 package vn.techmaster.blog.DTO;
 
 import java.time.LocalDateTime;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
